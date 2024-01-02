@@ -1,5 +1,5 @@
 
-import "./globals.css";
+import "../globals.css";
 
 export default function Page4() {
   return (

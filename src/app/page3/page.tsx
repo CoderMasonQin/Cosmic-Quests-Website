@@ -1,12 +1,8 @@
-import "./globals.css";
-import { useNavigate } from 'react-router-dom'
-import { Button } from "../components/ui/Button";
+"use client";
+import "../globals.css";
+import { useRouter } from "next/navigation";
+import { Button } from "../../components/ui/Button";
 import { useState } from "react";
-import UniImage1 from "../../public/3.jpg"
-import UniImage2 from "../../public/5.jpg"
-import UniImage3 from "../../public/6.jpg"
-import UniImage4 from "../../public/7.jpg"
-import UniImage5 from "../../public/8.jpg"
 
 export default function Page3() {
   const dataArray = [["Who is the founder of Ethereum?","Vitalik Buterin","Satoshi Nakamoto","Charlie Lee","Vitalik Buterin"],
@@ -45,7 +41,7 @@ export default function Page3() {
   let Universe3 = 15;
   let Universe4 = 20;
 
-  const navigate = useNavigate()
+  const router = useRouter()
   const handleAnswer = (answer : string) =>{
     if(answer == dataArray[questionid][1])
     {
@@ -74,7 +70,7 @@ export default function Page3() {
           setAnweredThree(false)
         }
         else{
-          navigate('/End')
+          router.push('/page4')
         }
         
       }, 1000);
