@@ -1,0 +1,193 @@
+[
+    {
+      "type": "impl",
+      "name": "Game",
+      "interface_name": "contracts::IGame"
+    },
+    {
+      "type": "enum",
+      "name": "core::bool",
+      "variants": [
+        {
+          "name": "False",
+          "type": "()"
+        },
+        {
+          "name": "True",
+          "type": "()"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "core::integer::u256",
+      "members": [
+        {
+          "name": "low",
+          "type": "core::integer::u128"
+        },
+        {
+          "name": "high",
+          "type": "core::integer::u128"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "contracts::Adventure",
+      "members": [
+        {
+          "name": "_genesis_timestamp",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "_duration",
+          "type": "core::integer::u64"
+        },
+        {
+          "name": "_current_question_id",
+          "type": "core::felt252"
+        },
+        {
+          "name": "_current_score",
+          "type": "core::integer::u256"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "contracts::IGame",
+      "items": [
+        {
+          "type": "function",
+          "name": "new_adventure",
+          "inputs": [
+            {
+              "name": "inviter",
+              "type": "core::starknet::contract_address::ContractAddress"
+            },
+            {
+              "name": "invite_adventure_id",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "answer",
+          "inputs": [
+            {
+              "name": "answer_index",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "quit",
+          "inputs": [],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "is_in_game",
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "core::bool"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_current_adventure",
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "contracts::Adventure"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_adventure",
+          "inputs": [
+            {
+              "name": "adventure_id",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "contracts::Adventure"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_score",
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "core::integer::u256"
+            }
+          ],
+          "state_mutability": "view"
+        }
+      ]
+    },
+    {
+      "type": "constructor",
+      "name": "constructor",
+      "inputs": []
+    },
+    {
+      "type": "event",
+      "name": "contracts::Game::StartGame",
+      "kind": "struct",
+      "members": [
+        {
+          "name": "adventure",
+          "type": "contracts::Adventure",
+          "kind": "data"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "contracts::Game::NextQuestion",
+      "kind": "struct",
+      "members": [
+        {
+          "name": "question_id",
+          "type": "core::felt252",
+          "kind": "data"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "contracts::Game::Event",
+      "kind": "enum",
+      "variants": [
+        {
+          "name": "StartGame",
+          "type": "contracts::Game::StartGame",
+          "kind": "nested"
+        },
+        {
+          "name": "NextQuestion",
+          "type": "contracts::Game::NextQuestion",
+          "kind": "nested"
+        }
+      ]
+    }
+  ]

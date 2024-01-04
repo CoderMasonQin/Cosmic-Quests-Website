@@ -27,14 +27,14 @@ export default function Page3() {
   ["How many continents are there on Earth?","5","6","7","7"],
   ["Which actor played Jack Sparrow in the 'Pirates of the Caribbean' series?","Johnny Depp","Orlando Bloom","Brad Pitt","Johnny Depp"]]
 
-  const [questionid, setQuestionId] = useState(0)
-  const [AnsweredOne, setAnweredOne] = useState(false)
-  const [AnsweredTwo, setAnweredTwo] = useState(false)
-  const [AnsweredThree, setAnweredThree] = useState(false)
+  const [questionId, setQuestionId] = useState(0)
+  const [AnsweredOne, setAnsweredOne] = useState(false)
+  const [AnsweredTwo, setAnsweredTwo] = useState(false)
+  const [AnsweredThree, setAnsweredThree] = useState(false)
 
-  let IsOne = dataArray[questionid][1] == dataArray[questionid][4]
-  let IsTwo = dataArray[questionid][2] == dataArray[questionid][4]
-  let IsThree = dataArray[questionid][3] == dataArray[questionid][4]
+  let IsOneCorrect = dataArray[questionId][1] == dataArray[questionId][4]
+  let IsTwoCorrect = dataArray[questionId][2] == dataArray[questionId][4]
+  let IsThreeCorrect = dataArray[questionId][3] == dataArray[questionId][4]
 
   let Universe1 = 5;
   let Universe2 = 10;
@@ -43,48 +43,48 @@ export default function Page3() {
 
   const router = useRouter()
   const handleAnswer = (answer : string) =>{
-    if(answer == dataArray[questionid][1])
+    if(answer == dataArray[questionId][1])
     {
-      setAnweredOne(true);
+      setAnsweredOne(true);
     }
-    if(answer == dataArray[questionid][2])
+    if(answer == dataArray[questionId][2])
     {
-      setAnweredTwo(true);
+      setAnsweredTwo(true);
     }
-    if(answer == dataArray[questionid][3])
+    if(answer == dataArray[questionId][3])
     {
-      setAnweredThree(true);
+      setAnsweredThree(true);
     }
-    if (answer == dataArray[questionid][4])
-    {
+    // if (answer == dataArray[questionId][4])
+    // {
       setTimeout(() => {
-        if(questionid < dataArray.length - 1)
+        if(questionId < dataArray.length - 1)
         {
-          setQuestionId(questionid + 1)
-          IsOne = dataArray[questionid][1] == dataArray[questionid][4]
-          IsTwo = dataArray[questionid][2] == dataArray[questionid][4]
-          IsThree = dataArray[questionid][3] == dataArray[questionid][4]
+          setQuestionId(questionId + 1)
+          // IsOne = dataArray[questionId][1] == dataArray[questionId][4]
+          // IsTwo = dataArray[questionId][2] == dataArray[questionId][4]
+          // IsThree = dataArray[questionId][3] == dataArray[questionId][4]
       
-          setAnweredOne(false)
-          setAnweredTwo(false)
-          setAnweredThree(false)
+          setAnsweredOne(false)
+          setAnsweredTwo(false)
+          setAnsweredThree(false)
         }
         else{
           router.push('/page4')
         }
         
       }, 1000);
-    }
+    // }
   }
 
 
   return (
-    <div className="Game" style={{backgroundImage: questionid > Universe4 ? `url(8.jpg)`: questionid > Universe3? `url(7.jpg)` : questionid > Universe2? `url(6.jpg)` : questionid > Universe1? `url(5.jpg)`: `url(3.jpg)`}}>
-      <div className="flex flex-col items-center justify-center min-h-screen gap-12">
-          <p>{questionid + 1}. {dataArray[questionid][0]}</p>
-          <Button onClick={() => handleAnswer(dataArray[questionid][1])} style={{ backgroundColor: AnsweredOne ? (IsOne ? 'green' : 'red'):''}}>a. {dataArray[questionid][1]}</Button>
-          <Button onClick={() => handleAnswer(dataArray[questionid][2])} style={{ backgroundColor: AnsweredTwo ? (IsTwo ? 'green' : 'red'):''}}>b. {dataArray[questionid][2]}</Button>
-          <Button onClick={() => handleAnswer(dataArray[questionid][3])} style={{ backgroundColor: AnsweredThree ? (IsThree ? 'green' : 'red'):''}}>c. {dataArray[questionid][3]}</Button>
+    <div className="Game" style={{backgroundImage: questionId > Universe4 ? `url(8.jpg)`: questionId > Universe3? `url(7.jpg)` : questionId > Universe2? `url(6.jpg)` : questionId > Universe1? `url(5.jpg)`: `url(3.jpg)`}}>
+      <div className="flex flex-col items-center justify-center min-h-screen gap-12 text-slate-50">
+          <p>{questionId + 1}. {dataArray[questionId][0]}</p>
+          <Button onClick={() => handleAnswer(dataArray[questionId][1])} style={{ backgroundColor: AnsweredOne ? (IsOneCorrect ? 'green' : 'red'):''}}>a. {dataArray[questionId][1]}</Button>
+          <Button onClick={() => handleAnswer(dataArray[questionId][2])} style={{ backgroundColor: AnsweredTwo ? (IsTwoCorrect ? 'green' : 'red'):''}}>b. {dataArray[questionId][2]}</Button>
+          <Button onClick={() => handleAnswer(dataArray[questionId][3])} style={{ backgroundColor: AnsweredThree ? (IsThreeCorrect ? 'green' : 'red'):''}}>c. {dataArray[questionId][3]}</Button>
       </div>
     </div>
   );
